@@ -13,7 +13,7 @@ const Game = ({
          score,
           guesses,
         }) => {
-
+  
 
   const [letter, setLetter] = useState('')
   //useRef cria uma referencia a algum lugar
