@@ -17,38 +17,8 @@
     },
     {
       "name": "short",
-      "price": "35",
+      "price": "25",
       "id": 4
-    },
-    {
-      "name": "short",
-      "price": "52",
-      "id": 5
-    },
-    {
-      "name": "alface",
-      "price": "5",
-      "id": 6
-    },
-    {
-      "name": "blusa",
-      "price": "40",
-      "id": 7
-    },
-    {
-      "name": "alface",
-      "price": "5",
-      "id": 8
-    },
-    {
-      "name": "banana",
-      "price": "2",
-      "id": 9
-    },
-    {
-      "name": "abacaxa",
-      "price": "7",
-      "id": 10
     }
   ]
 }

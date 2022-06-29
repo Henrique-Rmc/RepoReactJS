@@ -1,78 +1,91 @@
-import './App.css';
+import './App.css'
 
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 
-//4-Custom Hook
-import {useFetch} from './hooks/useFetch'
+import { useFetch } from './hooks/useFetch1'
 
-const url = "http://localhost:3000/products"
+/**
+ * 1- definir a url do BD que iremos acessar
+ * 
+ * 2-criar a base visual para mostrar os produtos
+ * 
+ * 3- criar uma interface para inserir o nome e preço dos produtos que serão inseridos
+ * 
+ * 4- criar as contantes que vão ser usadas
+ * 
+ * 5-criar o handleSubmit que recebe as informaçoes de um produto e envia para processo
+ * 
+ */
 
-function App() {
-  const [products, setProducts] = useState([])
-
-  //4-custom hook
-  const{data: items, httpConfig} = useFetch(url)
-  const [name, setName] = useState('')
-  const [price, setPrice] = useState('')
 
 
 
-//2- Adição de produtos
-const handleSubmit = async (e) => {
-  e.preventDefault()
+function App () {
 
-  const product = {
-    name,
-    price
+  const[name, setName] = useState('')
+  const[price, setPrice] = useState('')
+  //permite acesso aos dados do banco que foram passados na URL
+  const {data:items} = useFetch(url)
+
+  const handleSubmit = async (e) => {
+    //recebe name e price do 'evento'
+    const product = {
+      name, 
+      price
+    }
+
+    //devemos realizar a configuração de envio
+    //chamaremos o httpConfig que deve ser criado no UseFetch para mandar os dados
+
+    httpConfig(product, "POST")
+
+    setName('')
+    setPrice('')
   }
- 
-  httpConfig(product, "POST")
-  setName("")
-  setPrice("")
 
-}
+
   return (
-    <div className="App">
-      <h1>Lista de Produtos</h1>
-      <ul>
-        {items && items.map((product)=>(
-          <li key = {product.id}>
-            {product.name} -R$: {product.price} 
-          </li>
-        ))}
-      </ul>
-        
-      <div className='add-product'>
+    <div>
+      
+    <h1>Lista de Produtos</h1>
+
+    <ul>
+      {items && items.map((product)=>(
+        <li key = {product.id}>
+          {product.name} -R$: {product.price} <button onClick={()=>handleDelete(product.id)}>Excluir Produto</button>
+        </li>
+      ))}
+
+    <h2>Insira novos Produtos</h2>
+    <div>
         <form onSubmit={handleSubmit}>
           <label>
             Nome:
-            <input 
-            type = 'text' 
-            value={name} 
-            name = 'name' 
-            onChange = {(e) => setName(e.target.value)} 
+            <input
+              type='text'
+              name='name'
+              onChange={(e)=>setName(e.target.value)}
             />
           </label>
+
           <label>
             Preço:
             <input
             type = 'number'
-            value={price} 
-            name = 'price' 
-            onChange = {(e) => setPrice(e.target.value)} 
+            name = 'price'
+            onChange={(e)=>setPrice(e.target.value)}
             />
           </label>
-          <input type = 'submit' value = "Criar" />
+
+        <input type= 'submit' value = 'Criar Produto'/>
         </form>
-      </div>
-
-
+    </div>
+      
+    </ul>
 
 
     </div>
-
-
-  );
+  )
 }
 
-export default App;
+export default App

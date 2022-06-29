@@ -16,6 +16,12 @@ export const useFetch = (url) =>{
     const[method, setMethod] = useState(null)
     //traz os dados atualizados
     const[callFetch, setCallFetch] = useState(false)
+
+    //6- Loading
+    const [loading, setLoading] = useFetch(false)
+
+
+
     //************Podemos chamar o httpconfig individualmente no app.js. Ele vai usar o setConfig que invoca o httpRequest
     
     //data é o produto a ser enviado e method a requiisição post,pút,get,delete,etc;;;....
@@ -35,14 +41,17 @@ export const useFetch = (url) =>{
         }
     }
     useEffect(()=>{
-
+        //6 - loading
+        setLoading(true)
         const fetchData = async () =>{
             const res = await fetch(url)
 
             const json = await res.json()
 
             setData(json)
+            setLoading(false)
         }
+
         fetchData()
         //url é a dependencia do useEffect para que quando a URL mude, o hook seja executado novamente
         //no passo 5 definimos callfetch como outra dependencia para que caso seja alterado, a func seja atualizada
@@ -76,5 +85,5 @@ export const useFetch = (url) =>{
     }, [config])
 
 
-    return {data, httpConfig}
+    return {data, httpConfig, loading}
 }
