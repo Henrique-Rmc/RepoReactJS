@@ -11,13 +11,13 @@
       "price": 90
     },
     {
-      "id": 3,
       "name": "Boné aba reta",
-      "price": 29.9
+      "price": "15",
+      "id": 3
     },
     {
       "name": "short",
-      "price": "25",
+      "price": "56",
       "id": 4
     }
   ]

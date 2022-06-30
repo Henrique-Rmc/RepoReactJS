@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
 
-export const useFetch = (url)=>{
+export const useFetch = (url) => {
 
 const [config, setConfig] = useState(null)
 const [data, setData] = useState(null)
 const [itemID, setItemID] = useState(null)
+const [method, setMethod] = useState(null)
+const [loading, setLoading] = useState(false)
+
 
 const [callFetch, setCallFetch] = useState(false)
 
+const[error, setError] = useState(null)
 
 /*o use fetch é responsavel por enviar os dados do BD para o FRONT
             ele funciona em tempo de execução, ou seja, ao executar, o fetchData
@@ -21,14 +25,23 @@ const [callFetch, setCallFetch] = useState(false)
             useEffect (()=>{
        
                 const fetchData = async()=>{
-                    
+                    setLoading(true)
+                    try{
                     const res = await fetch(url)
                     const json = await res.json()
+
+                    setData(json)
+                    }catch (error){
+                        setError("Houve um erro ao carregar os dados")
+                    }
+
+                    setLoading(false)
+
                 }
-                setData(json)
+                
+                fetchData()
         
-        
-            }, [url])
+            }, [url, callFetch])
 
 /*******************************************************************************************/
     
@@ -57,70 +70,53 @@ const [callFetch, setCallFetch] = useState(false)
         }
         }   
         
-    }
+    
 
 /*******************************************************************************************/
 
 //após as informações de configurações serem concluídas, devemos iniciar o processo de Request no HTTP
 
     useEffect(() => {
+
         const httpRequest = async ()=>{
             if(method === "POST"){
+                try{
                 let fetchOptions = [url, config]
                 let res = await fetch(...fetchOptions)
-                const json = await res.json
+                const json = await res.json()
                 setCallFetch(json)
+                }
+                catch{error}
 
 
             }else if(method === "DELETE"){
-                let deleteUrl = `${url}/${itemID}`
-                let res = await fetch(deleteUrl, method)
-                const json = res.json
+
+                try{
+                const deleteUrl = `${url}/${itemID}`
+
+                const res = await fetch(deleteUrl, config)
+
+                const json = await res.json()
+
                 setCallFetch(json)
+                }catch(error){
+                    console.log(error.message)
+                    setError("Houve um erro ao carregar os dados!")
+                }
+                
         }
 
 
     }
     httpRequest()
 
-}, [url, config, method])
-
-
+}, [url, config, method, itemID])
 
 /*******************************************************************************************/
 
-    useEffect(()=>{
-        fetchData = async () =>{
-            const res = await fetch(url)
-            const json = 
-        }
 
-
-
-
-    })
-
-
-
-
-/*******************************************************************************************/
-    useEffect (()=>{
-    const httpRequest = async () =>{
-        if(method === "POST"){
-            let fetchOptions = [url, config]
-            const res = await fetch(...fetchOptions)
-            const json = await res.json()
-            setCallFetch(json)
-        }
-
-    }
-
-    })
 
  
-
-
-return {data}
-
+return {data, httpConfig, error, loading}
 
 }

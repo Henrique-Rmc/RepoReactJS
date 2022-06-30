@@ -2,7 +2,7 @@ import './App.css'
 
 import { useState, useEffect } from 'react'
 
-import { useFetch } from './hooks/useFetch1'
+import { useFetch } from './hooks/useFetch'
 
 /**
  * 1- definir a url do BD que iremos acessar
@@ -18,14 +18,15 @@ import { useFetch } from './hooks/useFetch1'
  */
 
 
-
+ const url = "http://localhost:3000/products";
 
 function App () {
 
   const[name, setName] = useState('')
   const[price, setPrice] = useState('')
   //permite acesso aos dados do banco que foram passados na URL
-  const {data:items} = useFetch(url)
+  const {data:items, httpConfig} = useFetch(url)
+
 
   const handleSubmit = async (e) => {
     //recebe name e price do 'evento'
@@ -33,7 +34,6 @@ function App () {
       name, 
       price
     }
-
     //devemos realizar a configuração de envio
     //chamaremos o httpConfig que deve ser criado no UseFetch para mandar os dados
 
@@ -41,6 +41,11 @@ function App () {
 
     setName('')
     setPrice('')
+  }
+
+  const handleDelete = (id)=>{
+    httpConfig(id, "DELETE")
+
   }
 
 
