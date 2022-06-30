@@ -54,3 +54,11 @@ Routes:
 
 Route: 
 -Define as rotas
+
+
+**Link Ativo**
+
+-Para links ativos usando NavLink no lugar de Link
+--Link normalmente é usado para Barras de navegação
+--com NavLink temos acesso ao isActive
+--podemos ativar uma classe se a rota atual for a que estpa no "to"
