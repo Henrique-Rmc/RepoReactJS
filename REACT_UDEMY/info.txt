@@ -1,0 +1,56 @@
+instalar json server- npm i json-server
+rodar: npm run server
+
+instalar npm- npx create-react-app "nomedaPasta"
+rodar npm: npm run start
+
+instalar React Router- npm i react-router-dom
+
+1- rodar npm server para ocupar a porta 3000
+2- rodar nom run start na porta 3001
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+*****Sobre Requisições HTTP*****
+
+***SOBRE FETCH***
+
+O use fetch é responsavel por enviar os dados do BD para o FRONT
+ele funciona em tempo de execução, ou seja, ao executar, o fetchData
+imediatamente formata a URL que foi passada no inicio do programa
+para que a informação seja mostrada no front sem que hajam requisições.
+Ao final do useFetch exportamos algumas informações, como a data que
+está sendo enviada para o APP.js ao inicio da exec
+é a partir dessa informação que os dados sao mapeados no html
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+***JSON***
+O json é o responsavel por formatar as informações que passamos
+
+-Para criar um body precisamos usar um JSON.stringify(data) sendo Data os dados do objeto a ser criado
+--para concluir nossa requisição precisamos definir o setCallFetch com o JSONm montado através do res.
+
+
+**httpConfig***
+Como o nome diz, o httpConfig realiza a configuração do tipo de dado, inclue seu cabeçalho etc
+data= produto, method = "post, put, delete, etc"
+
+***httpRequest***
+Após as informações de configurações serem concluídas, devemos iniciar o processo de Request no HTTP
+o request envia a requisição com base no método da config
+
+*importante chamar os metodos após sua conclusão ainda dentro do UseEffect
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+******React Router*****
+BrowserRouter:
+-Define onde a área do app vai trocar as páginas
+
+Routes:
+-Define as rotas
+
+Route: 
+-Define as rotas
