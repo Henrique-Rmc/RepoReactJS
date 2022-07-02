@@ -62,3 +62,11 @@ Route:
 --Link normalmente é usado para Barras de navegação
 --com NavLink temos acesso ao isActive
 --podemos ativar uma classe se a rota atual for a que estpa no "to"
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+*****CONTEXT API*****
+
+--Context e Provides funcionam juntos
+--provides provém o contexto
