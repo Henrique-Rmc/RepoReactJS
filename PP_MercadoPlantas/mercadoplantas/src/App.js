@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import About from './pages/About/About';
 import Home from './pages/Home/Home';
 import Catalog from './pages/Catalog/Catalog'
-
+import Plants from './pages/Plants/Plants';
 
 function App() {
   return (
@@ -16,9 +16,10 @@ function App() {
         <Navbar/>
         <div className='container'>
         <Routes>
-          <Route path='=/' element={<Home/>}>Home</Route>
+          <Route path='/' element={<Home/>}>Home</Route>
           <Route path= '/about' element={<About/>}>About</Route>
-          <Route path= '/catalog' element={<Catalog/>}/>
+          <Route path= '/plants' element={<Catalog/>}>Catalog</Route>
+          <Route path= '/plants/:id' element = {<Plants/>}></Route>
 
         </Routes>
         </div>

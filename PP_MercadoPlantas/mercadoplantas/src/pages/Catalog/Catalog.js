@@ -10,11 +10,11 @@ const Catalog = () => {
         <h1>Catálogo de Plantas</h1>
         <ul className="plants">
             {plants && plants.map((plant)=>(
-                
                 <li key = {plant.id}>
                     <h2>Nome:{plant.name}</h2>
                     <p>Quantidade:{plant.quantidade}</p>
                     <Link to ={`/plants/${plant.id}`}>Mais Informações</Link>
+                
                 </li>
             ))}
             
