@@ -7,19 +7,29 @@ const Navbar = () => {
   return <nav className={styles.navbar}>
 
     <NavLink to = "/" className={styles.brand}>Mercado<span>PlantasLivres</span></NavLink>
-      <ul>
+      <ul className={styles.links_list}>
 
         <li>
         <NavLink to= '/'className={({isActive})=>(isActive ? styles.active : "")} >Home</NavLink>
         </li>
 
         <li>
-        <NavLink to = '/about'className={({isActive})=>(isActive ? styles.active : "")} >Sobre</NavLink>
+        <NavLink to = '/plants'className={({isActive})=>(isActive ? styles.active : "")} >Catálogo</NavLink>
         </li>
 
         <li>
-        <NavLink to = '/plants'className={({isActive})=>(isActive ? styles.active : "")} >Catálogo</NavLink>
+          <NavLink to = '/login' className={({isActive})=>(isActive? styles.active : "")}>Login</NavLink>
         </li>
+
+        <li>
+          <NavLink to = '/register'className={({isActive})=>(isActive? styles.active : "")}>Cadastro</NavLink>
+        </li>
+
+        <li>
+        <NavLink to = '/about'className={({isActive})=>(isActive ? styles.active : "")} >Sobre</NavLink>
+        </li>
+
+
         
       </ul>
 

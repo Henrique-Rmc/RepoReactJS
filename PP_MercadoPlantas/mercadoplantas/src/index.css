@@ -18,3 +18,14 @@ body{
   margin: 0;
   font-family: "MontSerrat", sans-serif;
 }
+
+a,nav button{
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  color: black;
+  transition: .4s;
+  font-size: 1em;
+  cursor: pointer;
+  font-family: "Mountserrat", sans-serif;
+}

@@ -1,0 +1,10 @@
+.footer{
+    height: 250px;
+    display: flex;
+    /*Padrao do flex é em linhas aos lados das outras, definimos aqui como colunas uma abaixo da outra*/
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(235, 235, 235);
+
+}

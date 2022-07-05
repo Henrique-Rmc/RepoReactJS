@@ -8,6 +8,7 @@ import About from './pages/About/About';
 import Home from './pages/Home/Home';
 import Catalog from './pages/Catalog/Catalog'
 import Plants from './pages/Plants/Plants';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -20,9 +21,9 @@ function App() {
           <Route path= '/about' element={<About/>}>About</Route>
           <Route path= '/plants' element={<Catalog/>}>Catalog</Route>
           <Route path= '/plants/:id' element = {<Plants/>}></Route>
-
         </Routes>
         </div>
+        <Footer/>
       </BrowserRouter>
 
       
