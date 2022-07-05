@@ -1,0 +1,32 @@
+{
+    "plants": [
+      {
+        "id": 1,
+        "name": "Samambaia",
+        "genero": "feminino",
+        "familia": "pteridofita",
+        "quantidade": 5
+      },
+      {
+        "id": 2,
+        "name": "Coqueiro",
+        "genero": "masculino",
+        "familia": "tiranossofita",
+        "quantidade": 10
+      },
+      {
+        "id": 3,
+        "name": "Palmeira",
+        "genero": "feminino",
+        "familia": "tiranossofita",
+        "quantidade": 20
+      },
+      {
+        "id": 4,
+        "name": "Bromelia",
+        "genero": "feminino",
+        "familia": "triceratofita",
+        "quantidade": 12
+      }
+    ]
+  }

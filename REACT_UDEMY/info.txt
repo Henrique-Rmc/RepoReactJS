@@ -29,6 +29,8 @@ está sendo enviada para o APP.js ao inicio da exec
 ***JSON***
 O json é o responsavel por formatar as informações que passamos
 
+adicionar nos scripts em package.json ---  "server" : "json-server --watch data/db.json"
+
 -Para criar um body precisamos usar um JSON.stringify(data) sendo Data os dados do objeto a ser criado
 --para concluir nossa requisição precisamos definir o setCallFetch com o JSONm montado através do res.
 
