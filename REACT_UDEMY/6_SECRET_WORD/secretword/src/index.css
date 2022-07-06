@@ -1,0 +1,44 @@
+{/*Define o esquema global do CSS*/}
+
+html, body {
+  height: 100%;
+}
+
+body{
+  font-family: Helvetica;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, blue 0%, black 100%);
+  color: white;
+
+}
+{/*
+  Cor dde fundo do botao = azul
+  cor do texto = branco
+  padding- topo = 0 e laterais 45
+  borda 2px 
+  border-radius = arredondamento
+  altura de 50px(formato comprimido)
+  texto em caixa alta
+  fonte negrito
+  aumentar fonte
+  cursor- transição quando passar mouse
+  */}
+button{
+  background: blue;
+  color: aliceblue;
+  padding: 0 45px;
+  border: 2px solid white;
+  border-radius: 25px;
+  height: 50px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: .4s;
+}
+{/*Muda a cot enquanto o cursor estiver em cima*/}
+button:hover{
+  background-color: darkblue;
+  
+}

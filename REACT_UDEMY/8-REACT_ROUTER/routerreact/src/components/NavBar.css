@@ -1,0 +1,22 @@
+nav{
+    display: flex;
+    justify-content: center;
+}
+
+nav a{
+    margin: 0 10px;
+    padding: 5px;
+    text-decoration: none;
+    color: black
+
+}
+
+nav a:hover{
+    color: grey;
+
+}
+/*Define o Link ativo*/
+.active{
+    background-color: black;
+    color: aliceblue;
+}
