@@ -6,7 +6,7 @@ import styles from './Navbar.module.css'
 const Navbar = () => {
   return <nav className={styles.navbar}>
 
-    <NavLink to = "/" className={styles.brand}>Mercado<span>PlantasLivres</span></NavLink>
+    <NavLink to = "/" className={styles.brand}>Forragens<span>Nativas</span></NavLink>
       <ul className={styles.links_list}>
 
         <li>
@@ -16,7 +16,7 @@ const Navbar = () => {
         <li>
         <NavLink to = '/plants'className={({isActive})=>(isActive ? styles.active : "")} >Catálogo</NavLink>
         </li>
-
+        
         <li>
           <NavLink to = '/login' className={({isActive})=>(isActive? styles.active : "")}>Login</NavLink>
         </li>
