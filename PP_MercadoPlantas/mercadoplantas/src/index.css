@@ -1,12 +1,12 @@
 html,body{
-    height: 100%;
+    height: 20%;
 
 }
 
 body{
   
   background-color: whitesmoke;
-  padding: 0;
+  padding-left: 50;
   margin: 0;
   font-family: "MontSerrat", sans-serif;
 }
