@@ -12,7 +12,7 @@ const Catalog = () => {
             {plants && plants.map((plant)=>(
                 <li key = {plant.id}>
                     <h2>Nome:{plant.name}</h2>
-                    <p>Quantidade:{plant.quantidade}</p>
+                    <p>Calorias:{plant.calorias}</p>
                     <Link to ={`/plants/${plant.id}`}>Mais Informações</Link>
                 
                 </li>

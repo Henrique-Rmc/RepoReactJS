@@ -1,4 +1,6 @@
 //Como começamos pela autenticação, nosso arquivo de Congif não está sendo camado em lugar nenhum
+//usuarios ficam salvos no authentication
+
 import {db} from '../firebase/config'
  
 import { async } from '@firebase/util'
@@ -14,6 +16,7 @@ import {
 import {useState, useEffect} from 'react'
 
 export const useAuthentication = () => {
+    
     const[error, setError] = useState(null)
     const[loading, setloading] = useState(null)
 

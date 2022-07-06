@@ -16,7 +16,10 @@ const Plants = () => {
     {plant && (
         <div>
             <h1>{plant.name}</h1>
-            <article>{plant.info}</article>
+            <p>Gênero:{plant.genero}</p>
+                    <p>Familia:{plant.familia}</p>
+                    <p>Calorias:{plant.calorias}</p>
+                    <p>Informações Adicionais:{plant.info}</p>
         </div>
     )}
     
