@@ -42,6 +42,9 @@ export const useAuthentication = () => {
             const {user} = await createUserWithEmailAndPassword(auth, data.email, data.password )
             //precisamos fazer isso pois o fireBase não armazena nome, apenas email e senha
             await updateProfile(user, {displayName: data.displayName})
+
+            //setLoading fica antes de confirmar a criação do usuário para que possa retornar ao estado de cadastrar
+            setloading(false)
             return user
 
         }catch (error){
@@ -65,7 +68,7 @@ export const useAuthentication = () => {
             setError(systemErrorMessage)
         }
 
-        setloading(false)
+        
 
     }
 
