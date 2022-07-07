@@ -32,7 +32,18 @@ export const useAuthentication = () => {
             return
         }
     }
+    /**LOGOUT******************************************************************* */
+    const logout = ()=>{
+        checkIfIsCancelled()
+        signOut(auth)
+    
+    }
 
+
+    /********************************************************************** */
+
+    
+    /**CRIAR USUARIO******************************************************* */
     const createUser = async (data) =>{
         checkIfIsCancelled()
 
@@ -78,7 +89,8 @@ export const useAuthentication = () => {
     }, [])
 
     return{
-        auth, createUser, error, loading,
+        auth, createUser, error, loading,auth, 
+        logout
     }
 
 }

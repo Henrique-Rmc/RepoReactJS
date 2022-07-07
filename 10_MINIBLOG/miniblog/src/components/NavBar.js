@@ -15,6 +15,8 @@ const NavBar = () => {
   //pega o usuario que está sendo compartilhado em provider
   const {user} = useAuthValue()
 
+  const {logout} = useAuthentication()
+
   return <nav className={styles.navbar}>
 
     <NavLink to = "/" className={styles.brand}>
@@ -46,6 +48,13 @@ const NavBar = () => {
             <li>
               <NavLink to = "/dashboard" className={({isActive})=>(isActive? styles.active : "")}>Dashboard</NavLink>
             </li>
+            
+              {user && (
+                <li>
+                  <button onClick={logout}>Sair</button>
+                </li>
+              )}
+
           </>
         )}
         <li>
