@@ -11,7 +11,7 @@ const About = () => {
 
       <p>Esse projeto consiste em um blog feito com React no front e FireBase no back-end</p>
 
-      <Link to = '/posts/create' classname = 'btn'>Criar Post</Link>
+      <Link to = '/posts/create' classname ="btn">Criar Post</Link>
 
     </div>
   )

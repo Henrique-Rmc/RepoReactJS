@@ -2,11 +2,14 @@ import logo from './logo.svg';
 import './App.css';
 
 import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom'
+
+//mapeia se a autenticação foi feita com sucesso
 import { onAuthStateChanged } from 'firebase/auth';
 
 //HOOKS
 import { useState, UseEffect, useEffect } from 'react';
 //Importamos o useAuthentication para que não precisemos inicializar novamente
+//pois acessamos seu "const auth=getAuth"
 import { useAuthentication } from './hooks/useAutentication';
 
 //COMPONENTS
@@ -26,9 +29,11 @@ function App() {
   const [user, setUser] = useState(undefined)
   const {auth} = useAuthentication()
 
+  //o loading vai estar ativo sempre que o usuario estiver carregando
   const loadingUser = user === undefined
 
   //sempre que mudar o auth, ele vai ser mapeado
+  //Esse useEffect recebe um auth como paramentro, dessa forma, sempre que o auth for executado, ele vai atualizar
   useEffect(()=>{
 
     onAuthStateChanged(auth,(user) =>{
@@ -43,6 +48,7 @@ function App() {
 
   return (
     <div className="App">
+    {/*Permite Acessar o usuario em todo o sistema*/}
      <AuthProvider value = {{user}}>
      <BrowserRouter>
      <NavBar/>
