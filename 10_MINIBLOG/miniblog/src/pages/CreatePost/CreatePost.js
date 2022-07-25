@@ -6,15 +6,41 @@ import {useNavigate} from 'react-router-dom'
 
 import {useAuthValue} from '../../context/AuthContext'
 
+import { useInsertDocument } from '../../hooks/useInsertDocument'
+
 const CreatePost = () => {
   const [title, setTitle] = useState("")
   const [image, setImage] = useState("")
   const [body, setBody] = useState("")
   const [tags, setTags] = useState([])
   const [formError, setFormError] = useState("")
+  //atraves dessa const podemos ter acesso ao que foi retornado em useInsertDocument
+  const {InsertDocument, response} = useInsertDocument("posts")
+
+  //precisamos ter acesso ao usuario para que o post seja criado
+  const {user} = useAuthValue()
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setFormError("")
+
+    //validamos a url
+
+    //criamos o arry de tags
+
+    //checamos todos os valores
+    InsertDocument({
+      title, 
+      image, 
+      body, 
+      tags, 
+      uid: user.uid, 
+      createdBy: user.displayName
+    })
+
+    //redirect home page
+
+
   }
 
 
@@ -64,7 +90,13 @@ const CreatePost = () => {
              value = {tags}
              />
         </label>
-        <button className='btn'>Criar</button>
+        {!response.loading && <button className='btn'>Cadastrar</button>}
+        {response.loading && (
+          <button className='btn' disabled>
+            Aguarde...
+          </button>
+        )}
+        {response.error && <p className='error'>{response.error}</p>}
 
       </form>
 
