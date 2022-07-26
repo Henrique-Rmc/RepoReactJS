@@ -65,9 +65,9 @@ export const useInsertDocument = (docCollection) => {
         }
     }
 
-    useEffect(()=>{
-        return() => setCancelled(true)
-    }, [])
+    //useEffect(()=>{
+    //    return() => setCancelled(true)
+    //}, [])
     //retorna a resposta para sempre estar em contato com ela e a função de inserir para usar quando necessario
     return {insertDocument, response}
 }

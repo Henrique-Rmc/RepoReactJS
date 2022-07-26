@@ -15,7 +15,9 @@ const CreatePost = () => {
   const [tags, setTags] = useState([])
   const [formError, setFormError] = useState("")
   //atraves dessa const podemos ter acesso ao que foi retornado em useInsertDocument
-  const {InsertDocument, response} = useInsertDocument("posts")
+  const {insertDocument, response} = useInsertDocument("posts")
+
+  const navigate = useNavigate()
 
   //precisamos ter acesso ao usuario para que o post seja criado
   const {user} = useAuthValue()
@@ -25,21 +27,36 @@ const CreatePost = () => {
     setFormError("")
 
     //validamos a url
+    try{
+      new URL(image)
+    }catch(error){
+      setFormError("A imagem precisa ser uma URL.")
+    }
 
-    //criamos o arry de tags
+    //criamos o arry de tags, damos split na vírgula e eliminamos todos os espaços
+    const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase())
+
 
     //checamos todos os valores
-    InsertDocument({
+    if(!title || !image || !tags || !body){
+      setFormError("Por Favor preencha todos os campos.")
+    }
+
+
+    if(formError) return
+
+
+    insertDocument({
       title, 
       image, 
       body, 
-      tags, 
+      tagsArray, 
       uid: user.uid, 
       createdBy: user.displayName
     })
 
     //redirect home page
-
+    navigate("/")
 
   }
 
@@ -97,7 +114,7 @@ const CreatePost = () => {
           </button>
         )}
         {response.error && <p className='error'>{response.error}</p>}
-
+        {formError && <p className='error'>{formError}</p>}
       </form>
 
     </div>
