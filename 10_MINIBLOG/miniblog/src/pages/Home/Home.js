@@ -12,21 +12,30 @@ import { useState } from 'react'
 const Home = () => {
 
   const [query, setQuery] = useState("")
+  const [posts] = useState([])
 
   const handleSubmit = (e) =>{
     e.preventDefault()
   }
 
   return (
-    <div>
+    <div className={styles.home}>
       <h1>Veja os nossos posts mais recentes</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.search_form}>
       <input type= "text" placeholder = "Ou Busque por tags" onChange={(e)=> setQuery(e.target.value) }/>
       <button className='btn btn-dark'>Pesquisar</button>
       </form>
 
       <div>
         <h1>Posts</h1>
+        {posts && posts.length === 0 && (
+          <div className={styles.noposts}>
+            <p>Não foi possível encontrar nenhum post</p>
+            <Link to="/posts/create" className='btn'>Criar primeiro Post</Link>
+          </div>
+
+
+        )}
       </div>
 
     </div>
