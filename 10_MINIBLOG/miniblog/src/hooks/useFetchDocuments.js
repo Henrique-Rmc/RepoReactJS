@@ -22,10 +22,19 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
             try{
                 let q
                 //busca
-
                 //dashboard
+                if(search){
+                    q = await query(collectionRef, where("tags", "array-contains", search), 
+                    orderBy("CreatedAt", "desc")
+                    )
+
+                }else{
+                    q = await  query(collectionRef, orderBy('createdAt', 'desc'))
+                }
+
+
                 //q é uma let pois vai ser alterado de acordo com buscas
-                q = await  query(collectionRef, orderBy('createdAt', 'desc'))
+                
 
                 //sempre que um dado é alterado, o dado é atualizado
                 //criamos um novo objeto documento,inserimos nos meus documentos e temos o id separado dos dados(estrutura do fireBase)
@@ -35,7 +44,7 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
                         querySnapshot.docs.map((doc)=>(
                             {
                                 id: doc.id,
-                                ...doc.data
+                                ...doc.data()
                             }
                         ))
                     )
