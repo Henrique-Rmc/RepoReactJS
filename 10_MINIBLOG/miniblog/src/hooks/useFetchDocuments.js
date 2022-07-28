@@ -1,47 +1,46 @@
 import { useState, useEffect } from "react";
-import {db} from "../firebase/config"
-import { collection, query, orderBy,onSnapshot, where, querySnapshot, } from "firebase/firestore";
+import { db } from "../firebase/config"
+import { collection, query, orderBy, onSnapshot, where, querySnapshot, } from "firebase/firestore";
 
 export const useFetchDocuments = (docCollection, search = null, uid = null) => {
 
-    const [documents, setDocuments] = useState (null)
+    const [documents, setDocuments] = useState(null)
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(null)
 
     //deal with memory leak
     const [cancelled, setCancelled] = useState(false)
 
-    useEffect(()=>{
-
+    useEffect(() => {
         async function loadData() {
-            if(cancelled) return
+            if (cancelled) return
 
             setLoading(true)
             const collectionRef = await collection(db, docCollection)
 
-            try{
+            try {
                 let q
                 //busca
                 //dashboard
-                if(search){
-                    q = await query(collectionRef, where("tags", "array-contains", search), 
-                    orderBy("CreatedAt", "desc")
+                if (search) {
+                    q = await query(collectionRef, where("tagsArray", "array-contains", search),
+                        orderBy("createdAt", "desc")
                     )
 
-                }else{
-                    q = await  query(collectionRef, orderBy('createdAt', 'desc'))
+                } else {
+                    q = await query(collectionRef, orderBy('createdAt', 'desc'))
                 }
 
 
                 //q é uma let pois vai ser alterado de acordo com buscas
-                
+
 
                 //sempre que um dado é alterado, o dado é atualizado
                 //criamos um novo objeto documento,inserimos nos meus documentos e temos o id separado dos dados(estrutura do fireBase)
                 //colocamos todos os objetos dentro do doc com spread Operator, com isso, estamos criando um novo objeto igual ao inserido
-                await onSnapshot(q, (querySnapshot)=> {
+                await onSnapshot(q, (querySnapshot) => {
                     setDocuments(
-                        querySnapshot.docs.map((doc)=>(
+                        querySnapshot.docs.map((doc) => (
                             {
                                 id: doc.id,
                                 ...doc.data()
@@ -51,7 +50,7 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
                 })
                 setLoading(false)
 
-            }catch(error){
+            } catch (error) {
                 console.log(error)
                 setError(error.message)
                 setLoading(false)
@@ -62,8 +61,8 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
         loadData()
     }, [docCollection, search, uid, cancelled])
 
-    useEffect(()=>{
+    useEffect(() => {
         return () => setCancelled(true)
     })
-    return {documents, loading, error}
+    return { documents, loading, error }
 }
