@@ -72,3 +72,7 @@ Route:
 
 --Context e Provides funcionam juntos
 --provides provém o contexto
+
+
+//////////////////////////////
+UseParams retorna um objeto com os dados que vieram da URL
