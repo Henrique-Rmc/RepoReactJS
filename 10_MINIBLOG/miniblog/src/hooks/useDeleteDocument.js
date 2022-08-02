@@ -9,7 +9,7 @@ const initialState = {
 }
 //Com a ajuda do reducer podemos fornecer ações a partir do tipo de ação que é passado para ele.
 //poderimamos ter criado um componente para inserir o reducer***
-const insertReducer = (state, action) => {
+const deleteReducer = (state, action) => {
 
     switch(action.type){
         case "LOADING":
@@ -29,7 +29,7 @@ const insertReducer = (state, action) => {
 
 export const useDeleteDocument = (docCollection) => {
 
-    const [response, dispatch ] = useReducer(deletetReducer, initialState)
+    const [response, dispatch ] = useReducer(deleteReducer, initialState)
 
     //lidando com memory leak
     const [cancelled, setCancelled] = useState(false)
@@ -38,23 +38,20 @@ export const useDeleteDocument = (docCollection) => {
             dispatch(action)
         }
     }
-//para inserir um documento usamos o checkBeforeDispatch para definit os estados de loading e error.
-    const insertDocument = async(document) => {
+//para deletar um documento, recebemos seu id, usamos o checkBeforeDispatch para definit os estados de loading e error.
+    const deleteDocument = async(id) => {
         checkCancellBeforeDispatch({
             type: "LOADING",
         })
-//uma vez que não está cancelado, tentamos inserir o documento recebido pelo InsertDocument
+//uma vez que não está cancelado, tentamos deletar o documento recebido pelo InsertDocument
+//docCollection vem de firebase e ao passar o Id conseguimos acessar um doc da coleção
 
-        try {
-            const newDocument = {...document, createdAt: Timestamp.now()}
+        try { 
+            const deletedDocument = await deleteDoc(doc(db, docCollection, id))
 
-            const insertedDocument = await addDoc(
-                collection(db, docCollection), 
-                newDocument
-                )
             checkCancellBeforeDispatch({
-                type: "INSERTED_DOC",
-                payload: insertedDocument,
+                type: "DELETED_DOC",
+                payload: deletedDocument,
             })
 
         }catch(error){
@@ -69,5 +66,5 @@ export const useDeleteDocument = (docCollection) => {
     //    return() => setCancelled(true)
     //}, [])
     //retorna a resposta para sempre estar em contato com ela e a função de inserir para usar quando necessario
-    return {insertDocument, response}
+    return {deleteDocument, response}
 }
