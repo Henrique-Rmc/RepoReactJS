@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAuthValue } from '../../context/AuthContext'
 
-import { useInsertDocument } from '../../hooks/useInsertDocument'
+import { useUpdateDocument } from '../../hooks/useUpdateDocument'
 
 import { useFetchDocument } from '../../hooks/useFetchDocument'
 
@@ -31,13 +31,13 @@ const EditPost = () => {
       const textTags = post.tagsArray.join(", ")
       setTags(textTags)
     }
-  })
+  }, [post])
   const navigate = useNavigate()
 
-  //precisamos ter acesso ao usuario para que o post seja criado
+  //precisamos ter acesso ao usuario para que o post seja eeditado
   const { user } = useAuthValue()
 
-  const { insertDocument, response } = useInsertDocument("posts")
+  const { updateDocument, response } = useUpdateDocument("posts")
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -62,18 +62,17 @@ const EditPost = () => {
 
     if (formError) return
 
-
-    insertDocument({
+    const data = {
       title,
       image,
       body,
       tagsArray,
-      uid: user.uid,
-      editedBy: user.displayName
-    })
+    }
+
+    updateDocument(id, data)
 
     //redirect home page
-    navigate("/")
+    navigate("/dashboard")
 
   }
 
@@ -132,7 +131,7 @@ const EditPost = () => {
                 value={tags}
               />
             </label>
-            {!response.loading && <button className='btn'>Cadastrar</button>}
+            {!response.loading && <button className='btn'>Editar</button>}
             {response.loading && (
               <button className='btn' disabled>
                 Aguarde...
