@@ -6,3 +6,8 @@ Porque usar useState em Inputs?
 Atrelando um use State a um Input é possível alterar o input por um evento onChange.
 Ao usar useState em um formulário nós temos a possibilidade da limpeza dos inputs por meio do (Controlled Input)
 Após preenchermos um Form podemos unir os States e fazer um envio dos dados para o Backend.
+
+
+USE REDUCER
+-Assim como o useState o Reducer gerencia valores.
+-Entretanto, com o reducer é possível executar uma função ao açterar um valor
