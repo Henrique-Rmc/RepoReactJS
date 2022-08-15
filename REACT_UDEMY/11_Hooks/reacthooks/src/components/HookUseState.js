@@ -17,6 +17,14 @@ const HookUseState = () => {
 
     console.log(name)
 
+    const [age, setAge] = useState(18)
+
+const handleSubmit = (e) =>{
+  e.preventDefault()
+
+  // envio a uma API
+  console.log(age)
+}
 
   return (
     <div>
@@ -25,7 +33,17 @@ const HookUseState = () => {
         <p>Variável: {userName}</p>
         <p>useState: {name}</p>
         <button onClick={changeNames}>Mudar Nomes</button>
-        {/*Ao executar o change Names podemos ver que o useState é re-renderizado e apresentado mas a variável não*/}
+        {/*Ao executar o change Names podemos ver que o useState
+         é re-renderizado e apresentado mas a variável não*/}
+         <p>Digite a sua Idade:</p>
+    <form onSubmit={handleSubmit}>
+        <input 
+          type="text" 
+          value = {age} 
+          onChange={(e) => setAge(e.target.value)} />
+          <input type="submit" value ="Enviar" ></input>
+    </form>
+    <p>Você tem {age}anos</p>
     </div>
   )
 }
